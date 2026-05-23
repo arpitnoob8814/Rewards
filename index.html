@@ -299,18 +299,27 @@ setInterval(()=>{
 },2000);
 /* LIVE CHAT AUTO MESSAGES */
 
-const names = [
-"Alex",
-"Shadow",
-"NoobMaster",
-"Luna",
-"Drake",
-"Pixel",
-"Riya",
-"Falcon",
-"Ghost",
-"Zen"
-];
+function randomName(){
+
+  const words1 = [
+    "Shadow","Dark","Nova","Pixel","Rapid",
+    "Ghost","Epic","Royal","Crazy","Silent",
+    "Fire","Frozen","Night","Lucky","Hyper",
+    "Toxic","Thunder","Wolf","Dragon","Storm"
+  ];
+
+  const words2 = [
+    "Player","Gamer","King","Boy","YT",
+    "Playz","Master","Legend","Hunter","Pro",
+    "Live","Dev","Gaming","Clan","Hero"
+  ];
+
+  return (
+    words1[Math.floor(Math.random()*words1.length)] +
+    words2[Math.floor(Math.random()*words2.length)] +
+    Math.floor(Math.random()*999)
+  );
+}
 
 const texts = [
 "Just claimed Nitro Boost",
@@ -329,8 +338,7 @@ function addChatMessage(){
 
   const chat = document.getElementById("chatMessages");
 
-  const name =
-    names[Math.floor(Math.random()*names.length)];
+  const name = randomName();
 
   const text =
     texts[Math.floor(Math.random()*texts.length)];
