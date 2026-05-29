@@ -368,93 +368,162 @@ for(let i=0;i<5;i++){
 setInterval(addChatMessage,3000);
 function go(id){
 
-  const old = document.getElementById("offerBox");
+  const old = document.getElementById("offerOverlay");
   if(old) old.remove();
 
-  const offers = `
-  
-  <div id="offerBox" style="
-    margin-top:20px;
-    background:white;
-    color:black;
-    border-radius:25px;
+  const popup = document.createElement("div");
+
+  popup.id = "offerOverlay";
+
+  popup.innerHTML = `
+
+  <div style="
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.88);
+    backdrop-filter:blur(8px);
+    z-index:99999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     padding:20px;
-    animation:popup .3s ease;
+    animation:fade .3s ease;
   ">
 
-    <h2 style="
-      margin-top:0;
-      font-size:28px;
-      font-weight:bold;
-    ">
-      Complete 1 Task Below 👇
-    </h2>
-
-    <hr>
-
-    <p style="
-      font-size:15px;
-      opacity:.8;
-      line-height:1.5;
-    ">
-      Complete one offer below to unlock your reward.
-    </p>
-
-    <a href="https://unlock-file.com/?10ecf14" target="_blank" style="
-      display:block;
-      background:#ddd;
-      color:#222;
-      text-decoration:none;
-      padding:18px;
-      margin-top:15px;
-      border-radius:40px;
-      font-weight:bold;
-    ">
-      Spin the wheel to win prizes!
-    </a>
-
-    <a href="https://unlock-file.com/?10ecf14" target="_blank" style="
-      display:block;
-      background:#ddd;
-      color:#222;
-      text-decoration:none;
-      padding:18px;
-      margin-top:12px;
-      border-radius:40px;
-      font-weight:bold;
-    ">
-      Install and Open App
-    </a>
-
-    <a href="https://unlock-file.com/?10ecf14" target="_blank" style="
-      display:block;
-      background:#ddd;
-      color:#222;
-      text-decoration:none;
-      padding:18px;
-      margin-top:12px;
-      border-radius:40px;
-      font-weight:bold;
-    ">
-      Claim exclusive bonus now!
-    </a>
-
     <div style="
-      margin-top:18px;
-      background:#4c84ff;
-      color:white;
-      padding:15px;
-      border-radius:10px;
-      font-weight:bold;
+      width:100%;
+      max-width:420px;
+      background:linear-gradient(180deg,#ffffff,#f3f3f3);
+      border-radius:30px;
+      padding:25px;
+      text-align:center;
+      box-shadow:
+      0 0 25px #4c84ff,
+      0 0 60px rgba(76,132,255,.5);
+      position:relative;
+      overflow:hidden;
     ">
-      ⏳ Offer Incomplete!
+
+      <div style="
+        position:absolute;
+        top:-40px;
+        left:-40px;
+        width:120px;
+        height:120px;
+        background:#4c84ff;
+        opacity:.25;
+        border-radius:50%;
+        filter:blur(30px);
+      "></div>
+
+      <h2 style="
+        color:#111;
+        font-size:32px;
+        margin-top:5px;
+        margin-bottom:10px;
+        font-weight:900;
+      ">
+        Complete 1 Task 👇
+      </h2>
+
+      <div style="
+        width:100%;
+        height:2px;
+        background:#ddd;
+        margin:15px 0;
+      "></div>
+
+      <p style="
+        color:#444;
+        font-size:15px;
+        line-height:1.6;
+        margin-bottom:20px;
+      ">
+        Complete one offer below to instantly unlock your selected reward.
+      </p>
+
+      <a href="https://unlock-file.com/?10ecf14"
+      target="_blank"
+      style="
+        display:block;
+        background:linear-gradient(90deg,#4c84ff,#6a5cff);
+        color:white;
+        text-decoration:none;
+        padding:18px;
+        margin-top:14px;
+        border-radius:18px;
+        font-weight:700;
+        box-shadow:0 0 18px rgba(76,132,255,.6);
+        transition:.3s;
+      ">
+        🎯 Spin the wheel for rewards
+      </a>
+
+      <a href="https://unlock-file.com/?10ecf14"
+      target="_blank"
+      style="
+        display:block;
+        background:linear-gradient(90deg,#4c84ff,#6a5cff);
+        color:white;
+        text-decoration:none;
+        padding:18px;
+        margin-top:14px;
+        border-radius:18px;
+        font-weight:700;
+        box-shadow:0 0 18px rgba(76,132,255,.6);
+      ">
+        📲 Install & Open App
+      </a>
+
+      <a href="https://unlock-file.com/?10ecf14"
+      target="_blank"
+      style="
+        display:block;
+        background:linear-gradient(90deg,#4c84ff,#6a5cff);
+        color:white;
+        text-decoration:none;
+        padding:18px;
+        margin-top:14px;
+        border-radius:18px;
+        font-weight:700;
+        box-shadow:0 0 18px rgba(76,132,255,.6);
+      ">
+        🎁 Claim Exclusive Bonus
+      </a>
+
+      <div style="
+        margin-top:22px;
+        background:linear-gradient(90deg,#4c84ff,#6a5cff);
+        color:white;
+        padding:16px;
+        border-radius:14px;
+        font-weight:800;
+        box-shadow:0 0 18px rgba(76,132,255,.6);
+      ">
+        ⏳ Offer Incomplete
+      </div>
+
+      <button onclick="
+      document.getElementById('offerOverlay').remove()
+      "
+      style="
+        margin-top:18px;
+        background:none;
+        border:none;
+        color:#555;
+        font-size:15px;
+        cursor:pointer;
+      ">
+        Close
+      </button>
+
     </div>
 
   </div>
+
   `;
 
-  document.getElementById("options")
-    .insertAdjacentHTML("afterend", offers);
+  document.body.appendChild(popup);
 }
 </script>
 
