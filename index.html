@@ -368,67 +368,94 @@ for(let i=0;i<5;i++){
 setInterval(addChatMessage,3000);
 function go(id){
 
-  const links = {
-    1:"https://unlock-file.com/?10ecf14",
-    2:"https://unlock-file.com/?10ecf14",
-    3:"https://unlock-file.com/?10ecf14",
-    4:"https://unlock-file.com/?10ecf14"
-  };
+  const old = document.getElementById("offerBox");
+  if(old) old.remove();
 
-  const popup = document.createElement("div");
-
-  popup.innerHTML = `
-  <div style="
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.8);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:9999;
+  const offers = `
+  
+  <div id="offerBox" style="
+    margin-top:20px;
+    background:white;
+    color:black;
+    border-radius:25px;
+    padding:20px;
+    animation:popup .3s ease;
   ">
 
-    <div style="
-      background:#111;
-      padding:25px;
-      border-radius:20px;
-      width:90%;
-      max-width:350px;
-      text-align:center;
+    <h2 style="
+      margin-top:0;
+      font-size:28px;
+      font-weight:bold;
     ">
+      Complete 1 Task Below 👇
+    </h2>
 
-      <h2>🎁 Complete Offer</h2>
+    <hr>
 
-      <p>Complete one offer to unlock reward.</p>
+    <p style="
+      font-size:15px;
+      opacity:.8;
+      line-height:1.5;
+    ">
+      Complete one offer below to unlock your reward.
+    </p>
 
-      <a href="${links[id]}" target="_blank"
-      style="
-        display:block;
-        margin-top:15px;
-        padding:14px;
-        border-radius:12px;
-        background:#ff00cc;
-        color:white;
-        text-decoration:none;
-        font-weight:bold;
-      ">
-        Continue
-      </a>
+    <a href="https://unlock-file.com/?10ecf14" target="_blank" style="
+      display:block;
+      background:#ddd;
+      color:#222;
+      text-decoration:none;
+      padding:18px;
+      margin-top:15px;
+      border-radius:40px;
+      font-weight:bold;
+    ">
+      Spin the wheel to win prizes!
+    </a>
 
-      <button onclick="this.parentElement.parentElement.remove()"
-      style="
-        margin-top:10px;
-      ">
-        Close
-      </button>
+    <a href="https://unlock-file.com/?10ecf14" target="_blank" style="
+      display:block;
+      background:#ddd;
+      color:#222;
+      text-decoration:none;
+      padding:18px;
+      margin-top:12px;
+      border-radius:40px;
+      font-weight:bold;
+    ">
+      Install and Open App
+    </a>
 
+    <a href="https://unlock-file.com/?10ecf14" target="_blank" style="
+      display:block;
+      background:#ddd;
+      color:#222;
+      text-decoration:none;
+      padding:18px;
+      margin-top:12px;
+      border-radius:40px;
+      font-weight:bold;
+    ">
+      Claim exclusive bonus now!
+    </a>
+
+    <div style="
+      margin-top:18px;
+      background:#4c84ff;
+      color:white;
+      padding:15px;
+      border-radius:10px;
+      font-weight:bold;
+    ">
+      ⏳ Offer Incomplete!
     </div>
 
   </div>
   `;
 
-  document.body.appendChild(popup);
-  }
+  document.getElementById("options")
+    .insertAdjacentHTML("afterend", offers);
+}
 </script>
 
 </body>
